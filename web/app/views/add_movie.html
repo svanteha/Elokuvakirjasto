@@ -1,0 +1,24 @@
+<h2>Lisää elokuva!</h2>
+<form name="addMovieForm">
+    <div ng-controller="AddMovieController">
+        <p>
+            <label>Nimi</label>
+            <input name="name_field" type="text" ng-model="name_field" required>
+            <!--<div ng-show="addMovieForm.name_field.$invalid && addMovieForm.$dirty">roskiin</div>-->
+        </p>
+        <p>
+            <label>Ohjaaja</label>
+            <input type="text" ng-model="director_field" required>
+        </p>
+        <p>
+            <label>Julkaisuvuosi</label>
+            <input type="text" ng-model="year_field" required>
+        </p>
+        <p>
+            <label>Kuvaus</label>
+            <input type="text" ng-model="description_field" required>
+        </p>
+
+        <button ng-click="addMovie()">Lisää!</button>            
+    </div>
+</form>
