@@ -1,6 +1,10 @@
 // Toteuta moduulisi tänne
 var ElokuvakirjastoApp = angular.module('ElokuvakirjastoApp', ['ngRoute', 'firebase']);
 
+ElokuvakirjastoApp.config(['$httpProvider', function ($httpProvider) {
+        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    }]);
+
 ElokuvakirjastoApp.config(function ($routeProvider) {
     $routeProvider
             .when('/', {
@@ -22,6 +26,10 @@ ElokuvakirjastoApp.config(function ($routeProvider) {
             .when('/movies/:KEY/edit', {
                 controller: 'EditMovieController',
                 templateUrl: 'app/views/edit_movie.html'
+            })
+            .when('/search', {
+                controller: 'APIController',
+                templateUrl: 'app/views/search_movies.html'
             })
             .otherwise({
                 redirectTo: '/'

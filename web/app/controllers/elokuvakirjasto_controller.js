@@ -6,6 +6,19 @@ ElokuvakirjastoApp.controller('ListMoviesController', function ($scope, Firebase
     }
 });
 
+ElokuvakirjastoApp.controller('APIController', function ($scope, APIService) {
+    $scope.found = false;
+    $scope.searchMovie = function () {
+        $scope.found = true;
+        APIService.findMovie($scope.search_title_field, $scope.search_year_field).success(function(movies){
+           $scope.movies = movies.Search;
+            if (!$scope.movies) {
+                $scope.found = false;
+            }
+        });
+    }
+});
+
 ElokuvakirjastoApp.controller('AddMovieController', function ($scope, $location, FirebaseService) {
     $scope.addMovie = function () {
         var title = $scope.name_field;
@@ -42,7 +55,7 @@ ElokuvakirjastoApp.controller('EditMovieController', function ($scope, $routePar
         if (!movie) {
             $location.path('/');
         }
-        
+
         $scope.movie = movie;
         $scope.edit_name_field = $scope.movie.title;
         $scope.edit_director_field = movie.director;
