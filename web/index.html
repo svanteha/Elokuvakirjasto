@@ -13,8 +13,9 @@
             <h1>Elokuvakirjasto</h1>
             
             <a href="#/">Etusivu</a>
-            <a href="#/movies/new">Lisää elokuva</a>
+            <span ng-if="userLoggedIn"><a href="#/movies/new">Lisää elokuva</a></span> 
             <a href="#/search">Etsi elokuvia</a>
+            <a href="#/login"><button ng-click="logOut()" ng-if="userLoggedIn">Kirjaudu ulos</button></a> 
             
             <div id="content">
                 <div ng-view></div>

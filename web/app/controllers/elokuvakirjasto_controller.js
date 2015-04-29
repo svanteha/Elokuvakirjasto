@@ -1,4 +1,8 @@
-ElokuvakirjastoApp.controller('ListMoviesController', function ($scope, FirebaseService) {
+ElokuvakirjastoApp.controller('ListMoviesController', function ($scope, currentAuth, $location, FirebaseService) {
+    if (!currentAuth) {
+        $location.path('/login');
+    }
+
     $scope.movies = FirebaseService.getMovies();
 
     $scope.removeMovie = function (movie) {
@@ -10,8 +14,8 @@ ElokuvakirjastoApp.controller('APIController', function ($scope, APIService) {
     $scope.found = false;
     $scope.searchMovie = function () {
         $scope.found = true;
-        APIService.findMovie($scope.search_title_field, $scope.search_year_field).success(function(movies){
-           $scope.movies = movies.Search;
+        APIService.findMovie($scope.search_title_field, $scope.search_year_field).success(function (movies) {
+            $scope.movies = movies.Search;
             if (!$scope.movies) {
                 $scope.found = false;
             }
@@ -80,5 +84,31 @@ ElokuvakirjastoApp.controller('EditMovieController', function ($scope, $routePar
             FirebaseService.editMovie($scope.movie);
             $location.path('/movies/' + $scope.movie.$id);
         }
+    }
+});
+
+ElokuvakirjastoApp.controller('UserController', function ($scope, $location, AuthenticationService) {
+
+    $scope.logIn = function () {
+        AuthenticationService.logUserIn($scope.email, $scope.password)
+                .then(function () {
+                    $location.path('/movies');
+                })
+                .catch(function () {
+                    $scope.message = 'Väärä sähköpostiosoite tai salasana!'
+                });
+    }
+
+    $scope.register = function () {
+        AuthenticationService.createUser($scope.newEmail, $scope.newPassword)
+                .then(function () {
+                    AuthenticationService.logUserIn($scope.newEmail, $scope.newPassword)
+                            .then(function () {
+                                $location.path('/movies');
+                            });
+                })
+                .catch(function () {
+                    $scope.message = 'Tapahtui virhe! Yritä uudestaan';
+                });
     }
 });
