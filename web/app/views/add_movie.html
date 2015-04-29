@@ -3,7 +3,7 @@
     <div ng-controller="AddMovieController">
         <p>
             <label>Nimi</label>
-            <input name="name_field" type="text" ng-model="name_field" required>
+            <input type="text" ng-model="name_field" required>
             <!--<div ng-show="addMovieForm.name_field.$invalid && addMovieForm.$dirty">roskiin</div>-->
         </p>
         <p>
@@ -16,7 +16,7 @@
         </p>
         <p>
             <label>Kuvaus</label>
-            <input type="text" ng-model="description_field" required>
+            <textarea type="text" ng-model="description_field" required></textarea>
         </p>
 
         <button ng-click="addMovie()">Lisää!</button>            

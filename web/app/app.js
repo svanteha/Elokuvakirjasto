@@ -15,6 +15,14 @@ ElokuvakirjastoApp.config(function ($routeProvider) {
                 controller: 'AddMovieController',
                 templateUrl: 'app/views/add_movie.html'
             })
+            .when('/movies/:KEY', {
+                controller: 'ShowMovieController',
+                templateUrl: 'app/views/show_movie.html'
+            })
+            .when('/movies/:KEY/edit', {
+                controller: 'EditMovieController',
+                templateUrl: 'app/views/edit_movie.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

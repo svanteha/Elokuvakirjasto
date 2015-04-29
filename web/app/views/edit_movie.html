@@ -1,0 +1,24 @@
+<h2>Muokkaa elokuvaa {{movie.title}}</h2>
+
+<form name="editMovieForm">
+    <div ng-controller="EditMovieController">
+        <p>
+            <label>Nimi</label>
+            <input type="text" ng-model="edit_name_field" required>
+        </p>
+        <p>
+            <label>Ohjaaja</label>
+            <input type="text" ng-model="edit_director_field" required>
+        </p>
+        <p>
+            <label>Julkaisuvuosi</label>
+            <input type="text" ng-model="edit_year_field" required>
+        </p>
+        <p>
+            <label>Kuvaus</label>
+            <textarea type="text" ng-model="edit_description_field" required></textarea>
+        </p>
+
+        <button ng-click="editMovie()">Muokkaa!</button>            
+    </div>
+</form>

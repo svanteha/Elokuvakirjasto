@@ -2,10 +2,7 @@
 
     <ul>
         <li ng-repeat="movie in movies">
-            <h2>{{movie.title}}</h2>
-            <p>Ohjaaja: {{movie.director}}</p>
-            <p>Julkaisuvuosi: {{movie.year}}</p>
-            <p>Kuvaus: {{movie.description}}</p>
+            <a href="#/movies/{{movie.$id}}">{{movie.title}}</a> <button ng-click="removeMovie(movie)">Poista!</button>
         </li>
     </ul>
 </div>
